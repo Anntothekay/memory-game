@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MemoryBoard from "./components/MemoryBoard";
 
 MemoryBoard;

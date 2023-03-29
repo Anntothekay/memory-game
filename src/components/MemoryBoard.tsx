@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import MemoCard from "./MemoCard";
 
 interface Card {
@@ -47,12 +47,6 @@ const MemoryBoard = ({ cards, revealCard }: Props) => {
       setCardsTurned(0);
     }
   };
-
-  //   if (cardsTurned < 2) {
-  //     setCardsTurned(cardsTurned + 1);
-  //   } else {
-  //     setCardsTurned(0);
-  //   }
 
   return (
     <>
