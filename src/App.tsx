@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MemoryGame from "./components/MemoryBoard";
+import MemoryGame from "./components/MemoryGame";
 
 function App() {
   const initMemoDeck = [
