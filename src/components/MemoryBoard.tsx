@@ -42,6 +42,7 @@ const MemoryBoard = ({ cards, revealCard }: Props) => {
               : { ...player, playing: true }
           )
         );
+        // NEXT: UNREVEAL CARDS!!!
       }
       setCardsTurned(0);
     }

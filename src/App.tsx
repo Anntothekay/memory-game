@@ -76,7 +76,6 @@ function App() {
       isMatched: false,
     },
   ];
-  const numberofPlayers = 3;
 
   const [memoDeck, setMemoDeck] = useState(initMemoDeck);
 
@@ -108,7 +107,6 @@ function App() {
           console.log(position);
         }}
         cards={memoDeck}
-        players={numberofPlayers}
       />
     </>
   );
