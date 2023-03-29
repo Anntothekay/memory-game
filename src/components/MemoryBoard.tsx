@@ -13,7 +13,7 @@ interface Props {
   cards: Card[];
   revealCard: (position: number) => void;
 }
-const MemoryBoard = ({ cards, revealCard }: Props) => {
+const MemoryGame = ({ cards, revealCard }: Props) => {
   const [players, setPlayer] = useState([
     { name: 1, playing: true, turnsWon: 0 },
     { name: 2, playing: false, turnsWon: 0 },
@@ -65,4 +65,4 @@ const MemoryBoard = ({ cards, revealCard }: Props) => {
   );
 };
 
-export default MemoryBoard;
+export default MemoryGame;

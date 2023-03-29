@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MemoryBoard from "./components/MemoryBoard";
+import MemoryGame from "./components/MemoryBoard";
 
 function App() {
   const initMemoDeck = [
@@ -95,7 +95,7 @@ function App() {
 
   return (
     <>
-      <MemoryBoard
+      <MemoryGame
         revealCard={(position) => {
           setMemoDeck(
             memoDeck.map((card) =>

@@ -15,8 +15,6 @@ const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
     revealCard(event.target?.id);
     handleTurn(event.target.dataset.name);
   };
-  // checkIfMatched(event.target?.id);
-  // changeTurn();
 
   return (
     <div
