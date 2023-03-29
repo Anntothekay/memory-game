@@ -104,6 +104,20 @@ function App() {
           );
           console.log(position);
         }}
+        hideCards={() =>
+          setMemoDeck(
+            memoDeck.map((card) =>
+              !card.isMatched ? { ...card, isRevealed: false } : card
+            )
+          )
+        }
+        markCardsAsMatched={(name) =>
+          setMemoDeck(
+            memoDeck.map((card) =>
+              card.name === name ? { ...card, isMatched: true } : card
+            )
+          )
+        }
         cards={memoDeck}
       />
     </>

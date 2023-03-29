@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface Props {
   memoCard: {
     position: number;
@@ -20,10 +22,11 @@ const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
     <div
       id={memoCard.position.toString()}
       onClick={handleClick}
-      className="card"
+      className={"card"}
       data-name={memoCard.name}
+      /* FIX DOUBLE CLICK ISSUE*/
     >
-      {memoCard.isRevealed ? memoCard.emoji : ""}
+      {memoCard.isRevealed || memoCard.isMatched ? memoCard.emoji : ""}
     </div>
   );
 };
