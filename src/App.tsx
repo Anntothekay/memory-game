@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import MemoryBoard from "./components/MemoryBoard";
 
-MemoryBoard;
-
 function App() {
   const initMemoDeck = [
     {
