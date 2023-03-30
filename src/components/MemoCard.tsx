@@ -26,7 +26,6 @@ const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
         " card " +
         (memoCard.isRevealed || memoCard.isMatched ? "processing" : "")
       }
-      // className={memoCard.isRevealed ? "card processing" : "card"}
       data-name={memoCard.name}
     >
       {memoCard.isRevealed || memoCard.isMatched ? memoCard.emoji : ""}
