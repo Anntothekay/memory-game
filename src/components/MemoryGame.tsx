@@ -22,8 +22,8 @@ const MemoryGame = ({
   markCardsAsMatched,
 }: Props) => {
   const [players, setPlayer] = useState([
-    { name: "You", playing: true, turnsWon: 0 },
-    { name: "Me", playing: false, turnsWon: 0 },
+    { name: "1", playing: true, turnsWon: 0 },
+    { name: "2", playing: false, turnsWon: 0 },
   ]);
 
   const [cardToMatch, setCardToMatch] = useState("");
