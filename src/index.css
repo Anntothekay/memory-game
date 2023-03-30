@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,17 +12,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --primary-color: rgb(84, 84, 224);
+  --primary-color-bg: rgba(84, 84, 224, 0.2);
+  --secondary-color: rgb(255, 0, 119);
+
+  --card-color-1: green;
+  --card-color-2: rgb(0, 191, 255);
+  --card-color-3: rgb(255, 102, 0);
+  --card-color-4: rgb(132, 0, 255);
+  --card-color-5: rgb(241, 237, 0);
 }
 
 #root {
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--primary-color);
   text-decoration: inherit;
 }
 a:hover {
@@ -31,7 +40,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
@@ -54,7 +63,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--primary-color);
 }
 button:focus,
 button:focus-visible {
@@ -74,30 +83,95 @@ button:focus-visible {
   }
 }
 /**** GAME CSS ****/
-
 .memory-board {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.memory-deck {
   max-width: 300px;
   display: flex;
   flex-wrap: wrap;
 }
-.memory-board .card {
+.memory-deck .card {
   font-size: 80px;
   min-width: 146px;
   min-height: 146px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #646cff;
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   margin: 2px;
   cursor: pointer;
+}
+
+.memory-deck .card.processing.dog {
+  background: var(--card-color-1) !important;
+}
+.memory-deck .card.processing.cat {
+  background: var(--card-color-2) !important;
+}
+.memory-deck .card.processing.fish {
+  background: var(--card-color-3) !important;
+}
+.memory-deck .card.processing.monkey {
+  background: var(--card-color-4) !important;
+}
+.memory-deck .card.processing.rabbit {
+  background: var(--card-color-5) !important;
 }
 .processing {
   pointer-events: none;
 }
+
+.game-status .status-text h1 {
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color) 80%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 45px;
+  text-align: center;
+  text-transform: uppercase;
+}
 .players {
+  background-color: var(--primary-color-bg);
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.13) 0px 3px 6px;
   display: flex;
   justify-content: space-around;
+  padding: 4rem 2rem 2rem;
 }
 .player {
   font-size: 20px;
+  position: relative;
+}
+.player:first-of-type {
+  margin-right: 4rem;
+}
+.player p {
+  margin: 0;
+}
+
+.player .player-turn {
+  position: absolute;
+  top: -2rem;
+  font-size: 15px;
+  color: white;
+  background-color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 0.5rem;
+}
+.player .player-name {
+  font-weight: 600;
+  margin-bottom: -0.3rem;
 }

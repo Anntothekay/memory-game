@@ -11,16 +11,22 @@ interface Props {
 }
 
 const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
-  const handleClick = (event: any) => {
-    revealCard(parseInt(event.target?.id));
-    handleTurn(event.target.dataset.name);
+  const handleClick = (event: React.MouseEvent) => {
+    const target = event.target as HTMLElement | any;
+    revealCard(parseInt(target?.id));
+    handleTurn(target?.dataset.name);
   };
 
   return (
     <div
       id={memoCard.position.toString()}
       onClick={handleClick}
-      className={memoCard.isRevealed ? "card processing" : "card"}
+      className={
+        memoCard.name +
+        " card " +
+        (memoCard.isRevealed || memoCard.isMatched ? "processing" : "")
+      }
+      // className={memoCard.isRevealed ? "card processing" : "card"}
       data-name={memoCard.name}
     >
       {memoCard.isRevealed || memoCard.isMatched ? memoCard.emoji : ""}

@@ -22,9 +22,10 @@ const MemoryGame = ({
   markCardsAsMatched,
 }: Props) => {
   const [players, setPlayer] = useState([
-    { name: 1, playing: true, turnsWon: 0 },
-    { name: 2, playing: false, turnsWon: 0 },
+    { name: "You", playing: true, turnsWon: 0 },
+    { name: "Me", playing: false, turnsWon: 0 },
   ]);
+
   const [cardToMatch, setCardToMatch] = useState("");
   const [cardsTurned, setCardsTurned] = useState(0);
   const [isProcessingTurn, setIsProcessingTurn] = useState(false);
@@ -65,20 +66,9 @@ const MemoryGame = ({
   };
 
   return (
-    <>
-      <div className="players">
-        {players.map((player) => (
-          <div key={player.name} className="player">
-            {player.playing && <p>Your turn!</p>}
-            <p>Player {player.name}</p>
-            <p>Turns won: {player.turnsWon}</p>
-          </div>
-        ))}
-      </div>
+    <div className="memory-board">
       <div
-        className={
-          isProcessingTurn ? "memory-board processing" : "memory-board"
-        }
+        className={isProcessingTurn ? "memory-deck processing" : "memory-deck"}
       >
         {cards.map((card) => (
           <MemoCard
@@ -89,7 +79,22 @@ const MemoryGame = ({
           />
         ))}
       </div>
-    </>
+      <div className="game-status">
+        <div className="status-text">
+          <h1>Memory Game</h1>
+          <p>playing...</p>
+        </div>
+        <div className="players">
+          {players.map((player) => (
+            <div key={player.name} className="player">
+              {player.playing && <p className="player-turn">Your turn!</p>}
+              <p className="player-name">Player {player.name}</p>
+              <p className="player-points">Turns won: {player.turnsWon}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
