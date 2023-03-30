@@ -24,7 +24,6 @@ const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
       onClick={handleClick}
       className={memoCard.isRevealed ? "card processing" : "card"}
       data-name={memoCard.name}
-      /* FIX DOUBLE CLICK ISSUE*/
     >
       {memoCard.isRevealed || memoCard.isMatched ? memoCard.emoji : ""}
     </div>
