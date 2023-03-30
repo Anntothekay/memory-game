@@ -14,7 +14,7 @@ interface Props {
 
 const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
   const handleClick = (event: any) => {
-    revealCard(event.target?.id);
+    revealCard(parseInt(event.target?.id));
     handleTurn(event.target.dataset.name);
   };
 
@@ -22,7 +22,7 @@ const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
     <div
       id={memoCard.position.toString()}
       onClick={handleClick}
-      className={"card"}
+      className={memoCard.isRevealed ? "card processing" : "card"}
       data-name={memoCard.name}
       /* FIX DOUBLE CLICK ISSUE*/
     >

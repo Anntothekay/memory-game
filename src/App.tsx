@@ -99,7 +99,7 @@ function App() {
         revealCard={(position) => {
           setMemoDeck(
             memoDeck.map((card) =>
-              card.position == position ? { ...card, isRevealed: true } : card
+              card.position === position ? { ...card, isRevealed: true } : card
             )
           );
           console.log(position);
