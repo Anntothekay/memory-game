@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MemoCard from "./MemoCard";
 
 interface Card {
@@ -25,10 +25,36 @@ const MemoryGame = ({
     { name: "1", playing: true, turnsWon: 0 },
     { name: "2", playing: false, turnsWon: 0 },
   ]);
-
   const [cardToMatch, setCardToMatch] = useState("");
   const [cardsTurned, setCardsTurned] = useState(0);
   const [isProcessingTurn, setIsProcessingTurn] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [winner, setWinner] = useState("");
+
+  useEffect(() => {
+    checkForGameOver();
+  }, cards);
+
+  const checkForGameOver = () => {
+    if (cards.every((card) => card.isMatched === true)) {
+      setIsGameOver(true);
+      if (
+        players.reduce((prev, current) =>
+          prev.turnsWon === current.turnsWon ? true : false
+        )
+      ) {
+        setWinner("It's a Draw!");
+      } else {
+        setWinner(
+          players.reduce((prev, current) =>
+            prev.turnsWon > current.turnsWon
+              ? "Player " + prev.name + " won!"
+              : "Player " + current.name + " won!"
+          )
+        );
+      }
+    }
+  };
 
   const handleTurn = (name: string) => {
     if (cardsTurned < 1) {
@@ -78,14 +104,24 @@ const MemoryGame = ({
         ))}
       </div>
       <div className="game-status">
-        <div className="status-text">
+        <div className="status-text-wrapper">
           <h1>Memory Game</h1>
-          <p>playing...</p>
+          <p className="status-text-game">
+            {isGameOver ? "Game Over" : "Game is running, have fun!"}
+          </p>
+          {isGameOver && <p className="status-text-winner">{winner}</p>}
+          {isGameOver && (
+            <button className="newgame" /*onClick={startNewGame}*/>
+              Start New Game
+            </button>
+          )}
         </div>
         <div className="players">
           {players.map((player) => (
             <div key={player.name} className="player">
-              {player.playing && <p className="player-turn">Your turn!</p>}
+              {!isGameOver && player.playing && (
+                <p className="player-turn">Your turn!</p>
+              )}
               <p className="player-name">Player {player.name}</p>
               <p className="player-points">Turns won: {player.turnsWon}</p>
             </div>
