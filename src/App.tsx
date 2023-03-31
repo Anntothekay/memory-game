@@ -101,7 +101,6 @@ function App() {
               card.position === position ? { ...card, isRevealed: true } : card
             )
           );
-          console.log(position);
         }}
         hideCards={() =>
           setMemoDeck(
