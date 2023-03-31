@@ -56,8 +56,6 @@ const MemoryGame = ({
         );
         setTimeout(() => {
           hideCards();
-        }, 2000);
-        setTimeout(() => {
           setIsProcessingTurn(false);
         }, 2000);
       }
