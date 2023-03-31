@@ -13,9 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --primary-color: rgb(84, 84, 224);
+  --primary-color: rgb(156, 94, 255);
   --primary-color-bg: rgba(84, 84, 224, 0.2);
-  --secondary-color: rgb(255, 0, 119);
+  --secondary-color: rgb(255, 144, 186);
 
   --card-color-1: green;
   --card-color-2: rgb(0, 191, 255);
