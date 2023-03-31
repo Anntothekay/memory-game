@@ -194,7 +194,7 @@ button:hover {
   top: -1.25rem;
   font-size: 11px;
   color: white;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   padding: 4px 8px;
   border-radius: 0.5rem;
 }
