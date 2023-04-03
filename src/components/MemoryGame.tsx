@@ -21,14 +21,14 @@ interface Player {
 }
 
 const MemoryGame = ({ cards }: Props) => {
-  const initDeck = cards;
+  /* TODO: Add Game Settings for Deck length and Player Data via Inputs to App */
   const initPlayers = [
     { name: "1", playing: true, turnsWon: 0, gameWon: false },
     { name: "2", playing: false, turnsWon: 0, gameWon: false },
   ];
 
   const [players, setPlayers] = useState<Player[]>(initPlayers);
-  const [memoryDeck, setMemoryDeck] = useState(initDeck);
+  const [memoryDeck, setMemoryDeck] = useState(cards);
   const [cardToMatch, setCardToMatch] = useState("");
   const [cardsTurned, setCardsTurned] = useState(0);
   const [isProcessingTurn, setIsProcessingTurn] = useState(false);
