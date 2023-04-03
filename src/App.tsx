@@ -75,49 +75,9 @@ function App() {
     },
   ];
 
-  const [memoDeck, setMemoDeck] = useState(initMemoDeck);
-
-  useEffect(() => {
-    shuffleBoard();
-  }, []);
-
-  const shuffleBoard = () => {
-    setMemoDeck(
-      memoDeck
-        .map((card) => ({
-          ...card,
-          position: Math.floor(Math.random() * 100_000),
-        }))
-        .sort((a, b) => a.position - b.position)
-    );
-  };
-
   return (
     <>
-      <MemoryGame
-        revealCard={(position) => {
-          setMemoDeck(
-            memoDeck.map((card) =>
-              card.position === position ? { ...card, isRevealed: true } : card
-            )
-          );
-        }}
-        hideCards={() =>
-          setMemoDeck(
-            memoDeck.map((card) =>
-              !card.isMatched ? { ...card, isRevealed: false } : card
-            )
-          )
-        }
-        markCardsAsMatched={(name) =>
-          setMemoDeck(
-            memoDeck.map((card) =>
-              card.name === name ? { ...card, isMatched: true } : card
-            )
-          )
-        }
-        cards={memoDeck}
-      />
+      <MemoryGame cards={initMemoDeck} />
     </>
   );
 }

@@ -11,9 +11,6 @@ interface Card {
 
 interface Props {
   cards: Card[];
-  revealCard: (position: number) => void;
-  hideCards: () => void;
-  markCardsAsMatched: (name: string) => void;
 }
 
 interface Player {
@@ -23,28 +20,73 @@ interface Player {
   gameWon: boolean;
 }
 
-const MemoryGame = ({
-  cards,
-  revealCard,
-  hideCards,
-  markCardsAsMatched,
-}: Props) => {
-  const [players, setPlayers] = useState<Player[]>([
+const MemoryGame = ({ cards }: Props) => {
+  const initDeck = cards;
+  const initPlayers = [
     { name: "1", playing: true, turnsWon: 0, gameWon: false },
     { name: "2", playing: false, turnsWon: 0, gameWon: false },
-  ]);
+  ];
 
+  const [players, setPlayers] = useState<Player[]>(initPlayers);
+  const [memoryDeck, setMemoryDeck] = useState(initDeck);
   const [cardToMatch, setCardToMatch] = useState("");
   const [cardsTurned, setCardsTurned] = useState(0);
   const [isProcessingTurn, setIsProcessingTurn] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  const restartGame = () => {
+    shuffleAndResetBoard();
+    setPlayers(initPlayers);
+    setIsGameOver(false);
+  };
+
+  useEffect(() => {
+    shuffleAndResetBoard();
+  }, []);
+
   useEffect(() => {
     checkForGameOver();
-  }, cards);
+  }, memoryDeck);
+
+  const shuffleAndResetBoard = () => {
+    setMemoryDeck(
+      memoryDeck
+        .map((card: Card) => ({
+          ...card,
+          position: Math.floor(Math.random() * 100_000),
+          isRevealed: false,
+          isMatched: false,
+        }))
+        .sort((a, b) => a.position - b.position)
+    );
+  };
+
+  const revealCard = (position: number) => {
+    setMemoryDeck(
+      memoryDeck.map((card: Card) =>
+        card.position === position ? { ...card, isRevealed: true } : card
+      )
+    );
+  };
+
+  const markCardsAsMatched = (name: string) => {
+    setMemoryDeck(
+      memoryDeck.map((card: Card) =>
+        card.name === name ? { ...card, isMatched: true } : card
+      )
+    );
+  };
+
+  const hideCards = () => {
+    setMemoryDeck(
+      memoryDeck.map((card: Card) =>
+        !card.isMatched ? { ...card, isRevealed: false } : card
+      )
+    );
+  };
 
   const checkForGameOver = () => {
-    if (cards.every((card) => card.isMatched === true)) {
+    if (memoryDeck.every((card) => card.isMatched === true)) {
       setIsGameOver(true);
       const winner = players.reduce((prev, current) =>
         prev.turnsWon > current.turnsWon ? prev : current
@@ -95,7 +137,7 @@ const MemoryGame = ({
       <div
         className={isProcessingTurn ? "memory-deck processing" : "memory-deck"}
       >
-        {cards.map((card) => (
+        {memoryDeck.map((card) => (
           <MemoCard
             revealCard={revealCard}
             handleTurn={handleTurn}
@@ -120,7 +162,7 @@ const MemoryGame = ({
             </p>
           )}
           {isGameOver && (
-            <button className="newgame" /*onClick={startNewGame}*/>
+            <button className="newgame" onClick={restartGame}>
               Start New Game
             </button>
           )}
