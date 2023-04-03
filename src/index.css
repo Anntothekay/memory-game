@@ -3,9 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* color: rgba(255, 255, 255, 0.87); */
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,6 +12,7 @@
   --primary-color: rgb(156, 94, 255);
   --primary-color-bg: rgba(84, 84, 224, 0.2);
   --secondary-color: rgb(255, 144, 186);
+  --primary-font-color: rgb(57, 57, 117);
 
   --card-color-1: green;
   --card-color-2: rgb(0, 191, 255);
@@ -27,6 +25,7 @@ html {
   background-color: #8ec5fc;
   background-image: linear-gradient(62deg, #c8e4ff 0%, #f8f1ff 100%);
 }
+
 #root {
   margin: 0 auto;
   padding: 2rem;
@@ -47,6 +46,16 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a {
+  color: var(--primary-font-color);
 }
 
 h1 {
@@ -162,7 +171,6 @@ button:hover {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .game-status .status-text-winner {
-  color: var(--primary-color);
   text-align: center;
   font-size: 45px;
   font-weight: 600;

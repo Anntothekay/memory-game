@@ -84,10 +84,10 @@ function App() {
   const shuffleBoard = () => {
     setMemoDeck(
       memoDeck
-        .map(
-          (card) =>
-            card && { ...card, position: Math.floor(Math.random() * 100_000) }
-        )
+        .map((card) => ({
+          ...card,
+          position: Math.floor(Math.random() * 100_000),
+        }))
         .sort((a, b) => a.position - b.position)
     );
   };

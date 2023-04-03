@@ -15,21 +15,29 @@ interface Props {
   hideCards: () => void;
   markCardsAsMatched: (name: string) => void;
 }
+
+interface Player {
+  name: string;
+  playing: boolean;
+  turnsWon: number;
+  gameWon: boolean;
+}
+
 const MemoryGame = ({
   cards,
   revealCard,
   hideCards,
   markCardsAsMatched,
 }: Props) => {
-  const [players, setPlayer] = useState([
-    { name: "1", playing: true, turnsWon: 0 },
-    { name: "2", playing: false, turnsWon: 0 },
+  const [players, setPlayers] = useState<Player[]>([
+    { name: "1", playing: true, turnsWon: 0, gameWon: false },
+    { name: "2", playing: false, turnsWon: 0, gameWon: false },
   ]);
+
   const [cardToMatch, setCardToMatch] = useState("");
   const [cardsTurned, setCardsTurned] = useState(0);
   const [isProcessingTurn, setIsProcessingTurn] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [winner, setWinner] = useState("");
 
   useEffect(() => {
     checkForGameOver();
@@ -38,21 +46,14 @@ const MemoryGame = ({
   const checkForGameOver = () => {
     if (cards.every((card) => card.isMatched === true)) {
       setIsGameOver(true);
-      if (
-        players.reduce((prev, current) =>
-          prev.turnsWon === current.turnsWon ? true : false
+      const winner = players.reduce((prev, current) =>
+        prev.turnsWon > current.turnsWon ? prev : current
+      );
+      setPlayers(
+        players.map((player) =>
+          player.name === winner.name ? { ...player, gameWon: true } : player
         )
-      ) {
-        setWinner("It's a Draw!");
-      } else {
-        setWinner(
-          players.reduce((prev, current) =>
-            prev.turnsWon > current.turnsWon
-              ? "Player " + prev.name + " won!"
-              : "Player " + current.name + " won!"
-          )
-        );
-      }
+      );
     }
   };
 
@@ -63,7 +64,7 @@ const MemoryGame = ({
     } else {
       setIsProcessingTurn(true);
       if (cardToMatch === name) {
-        setPlayer(
+        setPlayers(
           players.map((player) =>
             player.playing
               ? { ...player, turnsWon: player.turnsWon + 1 }
@@ -73,7 +74,7 @@ const MemoryGame = ({
         markCardsAsMatched(name);
         setIsProcessingTurn(false);
       } else {
-        setPlayer(
+        setPlayers(
           players.map((player) =>
             player.playing
               ? { ...player, playing: false }
@@ -109,7 +110,15 @@ const MemoryGame = ({
           <p className="status-text-game">
             {isGameOver ? "Game Over" : "Game is running, have fun!"}
           </p>
-          {isGameOver && <p className="status-text-winner">{winner}</p>}
+          {isGameOver && (
+            <p className="status-text-winner">
+              {players.every((player) => player.gameWon === true)
+                ? "It's a Draw!"
+                : "Player " +
+                  players.find((player) => player.gameWon === true)?.name +
+                  " won!"}
+            </p>
+          )}
           {isGameOver && (
             <button className="newgame" /*onClick={startNewGame}*/>
               Start New Game
