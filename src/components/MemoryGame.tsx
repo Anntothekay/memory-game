@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MemoCard from "./MemoCard";
+import MemoCard from "./MemoryCard";
 
 interface Card {
   position: number;

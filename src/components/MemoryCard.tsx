@@ -10,7 +10,7 @@ interface Props {
   handleTurn: (name: string) => void;
 }
 
-const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
+const MemoryCard = ({ memoCard, revealCard, handleTurn }: Props) => {
   const handleClick = (event: React.MouseEvent) => {
     const target = event.target as HTMLElement | any;
     revealCard(parseInt(target?.id));
@@ -33,4 +33,4 @@ const MemoCard = ({ memoCard, revealCard, handleTurn }: Props) => {
   );
 };
 
-export default MemoCard;
+export default MemoryCard;
