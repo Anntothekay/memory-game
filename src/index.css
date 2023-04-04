@@ -87,7 +87,7 @@ button:hover {
 /**** GAME CSS ****/
 .memory-board {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-evenly;
 }
@@ -95,7 +95,7 @@ button:hover {
   max-width: 450px;
   display: flex;
   flex-wrap: wrap;
-  margin-right: 4rem;
+  margin: 0 4rem 3rem 0;
 }
 .memory-deck .card {
   font-size: 80px;
