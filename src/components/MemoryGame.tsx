@@ -126,7 +126,7 @@ const MemoryGame = ({ cards }: Props) => {
         setTimeout(() => {
           hideCards();
           setIsProcessingTurn(false);
-        }, 2000);
+        }, 1300);
       }
       setCardsTurned(0);
     }
