@@ -69,4 +69,18 @@ export const memoryDeck = [
     isRevealed: false,
     isMatched: false,
   },
+  {
+    position: 11,
+    name: "koala",
+    emoji: "🐨",
+    isRevealed: false,
+    isMatched: false,
+  },
+  {
+    position: 12,
+    name: "koala",
+    emoji: "🐨",
+    isRevealed: false,
+    isMatched: false,
+  },
 ];

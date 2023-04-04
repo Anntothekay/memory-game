@@ -19,6 +19,7 @@
   --card-color-3: rgb(255, 102, 0);
   --card-color-4: rgb(132, 0, 255);
   --card-color-5: rgb(241, 237, 0);
+  --card-color-6: rgb(218, 47, 132);
 }
 
 html {
@@ -91,7 +92,7 @@ button:hover {
   justify-content: space-evenly;
 }
 .memory-deck {
-  max-width: 300px;
+  max-width: 450px;
   display: flex;
   flex-wrap: wrap;
   margin-right: 4rem;
@@ -127,6 +128,9 @@ button:hover {
 }
 .memory-deck .card.processing.rabbit {
   background: var(--card-color-5) !important;
+}
+.memory-deck .card.processing.koala {
+  background: var(--card-color-6) !important;
 }
 .processing {
   pointer-events: none;
