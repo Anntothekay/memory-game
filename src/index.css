@@ -30,6 +30,7 @@ html {
 #root {
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 }
 
 a {
@@ -89,13 +90,13 @@ button:hover {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: space-evenly;
+  place-content: space-evenly;
 }
 .memory-deck {
   max-width: 450px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 4rem 0 0;
+  place-content: center;
 }
 .memory-deck .card {
   font-size: 80px;
@@ -186,12 +187,11 @@ button:hover {
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 4rem 0.75rem 2.5rem;
 }
 .player {
   position: relative;
-  padding: 0 3rem;
 }
 
 .player p {
